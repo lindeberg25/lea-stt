@@ -34,7 +34,7 @@ This makes all dependencies available at the operating system level.
 
 ### To run the Whisper model locally, download and save it in the "lea_stt/" directory.
 
-Link to download the model: [Whisper medium](https://openaipublic.azureedge.net/main/whisper/models/345ae4da62f9b3d59415adc60127b97c714f32e89e936602e85993674d08dcb1/medium.pt)
+Link to download the model: [medium whisper](https://openaipublic.azureedge.net/main/whisper/models/345ae4da62f9b3d59415adc60127b97c714f32e89e936602e85993674d08dcb1/medium.pt)
 
 ## Configuration
 The script uses environment variables for configuration. Set the following .env variables:
