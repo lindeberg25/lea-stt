@@ -29,15 +29,12 @@ To eliminate the need for activating a conda environment, add the following line
 ```
 export PATH="/opt/conda/envs/stt/bin:$PATH"
 source ~/.bashrc
-
 ```
 This command makes all dependencies of this transcription script available at the operating system level.
 
 ### To utilize the Whisper model locally, download it and save it in the "lea_stt/" directory.
 
-```
 Link to download the model: ([Whisper medium](https://openaipublic.azureedge.net/main/whisper/models/345ae4da62f9b3d59415adc60127b97c714f32e89e936602e85993674d08dcb1/medium.pt))
-```
 
 ## Configuration
 The script uses environment variables for configuration. Set the following .env variables:
