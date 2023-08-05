@@ -9,49 +9,49 @@ import numba
 from dotenv import load_dotenv
 import argparse
 
-# Desabilitar a compilação JIT do Numba
+# Disable Numba's JIT Compilation
 numba.config.DISABLE_JIT = True
-# Carregar as variáveis de ambiente do arquivo .env
+# Load environment variables from the .env file
 load_dotenv()
-# Obter o valor da variável de ambiente 'diarization_model' e atribuí-lo a 'diarization_model'
+# Get the value of the 'diarization_model' environment variable and assign it to 'diarization_model'
 diarization_model = os.environ.get('diarization_model')
-# Obter o valor da variável de ambiente 'transcription_model' e atribuí-lo a 'transcription_model'
+# Get the value of the 'transcription_model' environment variable and assign it to 'transcription_model'
 transcription_model = os.environ.get('transcription_model')
-# Obter o valor da variável de ambiente 'log_file' e atribuí-lo a 'log_file'
+# Get the value of the 'log_file' environment variable and assign it to 'log_file'
 log_file = os.environ.get('log_file')
-# Obter o valor da variável de ambiente 'language' e atribuí-lo a 'language'
+# Get the value of the 'language' environment variable and assign it to 'language'
 language = os.environ.get('language')
-# Configurar o registro de logging
+# Configure the logging
 logging.basicConfig(filename=log_file, level=logging.INFO, format='%(message)s')
-# Carregar o modelo de diarização
+# Load the diarization model
 pipeline = Pipeline.from_pretrained(diarization_model)
-# Carregar o modelo de transcrição
+# Load the transcription model
 model = whisper.load_model(transcription_model)
 
-# Função que transcreve e diariza audios
+# Function that transcribes and diarizes audios
 def transcribe_diarization(audio_file):
     transcricao = ""
     if os.path.exists(audio_file):
         start = time.time()
-        logging.info("Inicio da transcricao: {}".format(audio_file))
+        logging.info("Transcription start: {}".format(audio_file))
         
         array, sample = librosa.load(audio_file)
         duration = librosa.get_duration(y=array, sr=sample)
         
         asr_result = model.transcribe(audio_file, language=language)
         
-        logging.info("Resultado da transcricao: {}".format(asr_result['text']))
-        logging.info("Fim da transcricao: {}".format(audio_file))
-        logging.info("Duração do audio: {:.1f} seconds".format(duration))
-        logging.info("Duracao da transcricao: {:.1f} seconds".format((time.time() - start)))
+        logging.info("Transcription result: {}".format(asr_result['text']))
+        logging.info("Transcript end: {}".format(audio_file))
+        logging.info("Audio duration: {:.1f} seconds".format(duration))
+        logging.info("Transcription duration: {:.1f} seconds".format((time.time() - start)))
         
         start = time.time()
-        logging.info("Inicio da Diarizacao: {}".format(audio_file))
+        logging.info("Diarization start: {}".format(audio_file))
         
         diarization_result = pipeline(audio_file, num_speakers=2)
         
-        logging.info("Fim da diarizacao: {}".format(audio_file))
-        logging.info("Duracao da diarizacao: {:.1f} seconds".format((time.time() - start)))
+        logging.info("Diarization end: {}".format(audio_file))
+        logging.info("Diarization duration: {:.1f} seconds".format((time.time() - start)))
         
         label_map = {'SPEAKER_00': 'HNI_1', 'SPEAKER_01': 'HNI_2'}
         diarization_result = diarization_result.rename_labels(label_map)
@@ -63,15 +63,15 @@ def transcribe_diarization(audio_file):
             transcricao += line + os.linesep
         
     else:
-        logging.info("O arquivo {} não existe".format(audio_file))
+        logging.info("File {} not exist".format(audio_file))
 
 
     return transcricao
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Transcrever e diarizar arquivos de áudio.')
-    parser.add_argument('audio_file', type=str, help='Caminho para o arquivo de áudio para processamento.')
+    parser = argparse.ArgumentParser(description='Transcribe and diarize audio files.')
+    parser.add_argument('audio_file', type=str, help='Path to the audio file for processing.')
     args = parser.parse_args()
     
     trancricao = transcribe_diarization(args.audio_file)
