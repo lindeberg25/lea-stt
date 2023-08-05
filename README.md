@@ -30,7 +30,7 @@ To eliminate the need for activating a conda environment, add the following line
 export PATH="/opt/conda/envs/stt/bin:$PATH"
 source ~/.bashrc
 ```
-This command makes all dependencies of this transcription script available at the operating system level.
+This makes all dependencies available at the operating system level.
 
 ### To utilize the Whisper model locally, download it and save it in the "lea_stt/" directory.
 
