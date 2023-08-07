@@ -4,7 +4,7 @@
 This project provides a Python script to perform transcription and diarization on audio files. The script uses the whisper model ([Robust Speech Recognition via Large-Scale Weak Supervision](https://github.com/openai/whisper)) for audio transcription and pyannote-audio ([neural building blocks for speaker diarization](https://github.com/pyannote/pyannote-audio)) for speaker diarization in the audio recordings.
 
 ## Installation
-To run this project, create a Conda environment using the provided stt_environment.yaml file. This environment contains all the necessary dependencies for the correct functioning of the script.
+To run this project, create a conda environment using the provided stt_environment.yaml file. This environment contains all the dependencies for the script to work correctly
 
 ### Installing Conda
 
@@ -24,7 +24,7 @@ conda activate stt
 (stt) pip install pyannote-audio/  (install this local repository to run offline)
 ```
 
-To eliminate the need for activating a conda environment, add the following line to the shell configuration file, usually located at ~/.bashrc: 
+ To eliminate the requirement of activating a conda environment, add the following line to the shell configuration file, usually located at ~/.bashrc: 
 
 ```
 export PATH="/opt/conda/envs/stt/bin:$PATH"
@@ -32,9 +32,7 @@ source ~/.bashrc
 ```
 This makes all dependencies available at the operating system level.
 
-### To run the Whisper model locally
-
-Download and save it in the "lea_stt/" directory.
+### To run the Whisper model (medium) locally
 
 From "lea_stt/" directory, execute
 ```
