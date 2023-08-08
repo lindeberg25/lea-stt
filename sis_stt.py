@@ -56,6 +56,7 @@ def transcribe_diarization(audio_file):
         label_map = {'SPEAKER_00': 'HNI_1', 'SPEAKER_01': 'HNI_2'}
         diarization_result = diarization_result.rename_labels(label_map)
         
+        # diarize_text function can be found here: https://github.com/yinruiqing/pyannote-whisper
         final_result = diarize_text(asr_result, diarization_result)
         
         for seg, spk, sent in final_result:
