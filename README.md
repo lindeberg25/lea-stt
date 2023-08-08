@@ -3,7 +3,7 @@
 ## Overview
 This project provides a Python script to perform transcription and diarization on audio files. The script uses the whisper model ([Robust Speech Recognition via Large-Scale Weak Supervision](https://github.com/openai/whisper)) for audio transcription and pyannote-audio ([neural building blocks for speaker diarization](https://github.com/pyannote/pyannote-audio)) for speaker diarization in the audio recordings.
 
-To access further details, visit the following link: [ASR for intercepted audio in LEA](https://github.com/lindeberg25/lea-stt/asr_lea.pdf)
+To access further details, visit the following link: [ASR for intercepted audio in LEA](https://github.com/lindeberg25/lea-stt/blob/main/asr_lea.pdf)
 
 ## Installation
 To run this project, create a conda environment using the provided stt_environment.yaml file. This environment contains all the dependencies for the script to work correctly
